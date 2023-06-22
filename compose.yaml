@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: 'postgres:12-alpine'
+    environment:
+      - 'POSTGRES_DB=credit-card-db'
+      - 'POSTGRES_PASSWORD=root'
+      - 'POSTGRES_USER=postgres'
+    ports:
+      - '5433:5432'

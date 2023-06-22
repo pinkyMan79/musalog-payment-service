@@ -1,0 +1,41 @@
+
+databaseChangeLog:
+  - changeSet:
+      id: create_credit_card_table
+      author: terenin
+      changes:
+        - createTable:
+            tableName: credit_card_table
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: card_number
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cvv
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expiration
+                  type: TIMESTAMP WITHOUT TIME ZONE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: owner_name
+                  type: VARCHAR(255)
+              - column:
+                  name: owner_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+              - addPrimaryKey:
+                  columnNames: id
+                  constraintName: pk_credit_card_table
