@@ -1,4 +1,10 @@
 package one.terenin.yookassa.exception;
 
-public class UnspecifiedShopInformation extends Exception {
+import one.terenin.exception.BaseException;
+import one.terenin.exception.common.ErrorCode;
+
+public class UnspecifiedShopInformation extends BaseException {
+    public UnspecifiedShopInformation(ErrorCode message) {
+        super(message);
+    }
 }

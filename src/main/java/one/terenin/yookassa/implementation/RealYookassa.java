@@ -2,6 +2,7 @@ package one.terenin.yookassa.implementation;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
+import one.terenin.exception.common.ErrorCode;
 import one.terenin.yookassa.Yookassa;
 import one.terenin.yookassa.event.YookassaEvent;
 import one.terenin.yookassa.exception.BadRequestException;
@@ -82,7 +83,7 @@ public class RealYookassa implements Yookassa {
 
     private <T> T parseResponse(Class<T> wannableClass, @NonNull String requestAddress, @NonNull String requestMethod, String writableJson) throws IOException, UnspecifiedShopInformation, BadRequestException {
         if (shopIdentifier == 0 || shopToken == null) {
-            throw new UnspecifiedShopInformation();
+            throw new UnspecifiedShopInformation(ErrorCode.SERVICE_CALL_REJECTED);
 
         }
         URL url = new URL(requestAddress);
@@ -120,7 +121,7 @@ public class RealYookassa implements Yookassa {
 
         if (!success) {
             System.out.println(response);
-            throw new BadRequestException();
+            throw new BadRequestException(ErrorCode.SERVICE_CALL_REJECTED);
         }
 
         if (wannableClass == null) return null;

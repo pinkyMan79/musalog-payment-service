@@ -2,6 +2,8 @@ package one.terenin.yookassa.model;
 
 import com.google.gson.JsonElement;
 import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import java.util.UUID;
@@ -31,7 +33,9 @@ import java.util.UUID;
 }
  */
 
-@FieldDefaults(level = AccessLevel.PUBLIC)
+@Builder
+@Data
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Payment {
     UUID id;
     String status;

@@ -1,13 +1,20 @@
 package one.terenin.yookassa;
 
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.experimental.UtilityClass;
 import one.terenin.yookassa.implementation.RealYookassa;
+import one.terenin.yookassa.propertysource.YooPropertySource;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-@UtilityClass
+@Component
+@RequiredArgsConstructor
 public class YookassaInitializer {
 
-    public Yookassa initializeSdk(int shopIdentifier, @NonNull String shopToken) {
-        return new RealYookassa(shopIdentifier, shopToken);
+    private final YooPropertySource propertySource;
+
+    public Yookassa initializeSdk() {
+        return new RealYookassa(Integer.parseInt(propertySource.getShopId()), propertySource.getSecret());
     }
 }

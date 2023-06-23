@@ -13,10 +13,7 @@ public enum YookassaEvent {
     PAYMENT_WAITING_FOR_CAPTURE("Payment waiting for capture"),
     PAYMENT_SUCCESS_PAID("Payment succeeded"),
     PAYMENT_CANCELED("Payment canceled"),
-
-    REFUND_SUCCESS("Refund succeeded"),
-
-    ;
+    REFUND_SUCCESS("Refund succeeded");
 
     String eventName;
 }

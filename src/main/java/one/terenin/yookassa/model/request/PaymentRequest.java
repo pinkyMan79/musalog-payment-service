@@ -1,6 +1,7 @@
 package one.terenin.yookassa.model.request;
 
 import lombok.AccessLevel;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import one.terenin.yookassa.model.Amount;

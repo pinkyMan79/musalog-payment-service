@@ -1,6 +1,6 @@
 package one.terenin.yookassa.model;
 
-import lombok.AccessLevel;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.UUID;
@@ -18,7 +18,11 @@ import java.util.UUID;
 }
  */
 
-@FieldDefaults(level = AccessLevel.PUBLIC)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Refund {
 
     UUID id;
