@@ -19,7 +19,7 @@ import java.util.UUID;
 @CrossOrigin(maxAge = 3600)
 public interface PaymentApi {
 
-    // authorize by user service sending request from this
+    // authorize by user service sending request from this, no open endpoint
     @PostMapping("/card/register")
     @PermitAll
     ResponseEntity<CreditCardResponse> registerCard(@RequestBody CreditCardRequest request);
@@ -36,5 +36,7 @@ public interface PaymentApi {
     @PostMapping("/pay/for/subscription")
     @PreAuthorize("hasRole('USER')")
     ResponseEntity<Boolean> payForSubscription();
+
+    // pay for order api // need order + servcie
 
 }
