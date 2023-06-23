@@ -63,7 +63,7 @@ public class PaymentServiceImpl implements PaymentService {
                         Currency.RUB.getInfo()),
                 "Pay the subscription and become a god", "http://localhost:8082/");
         String confirmationUrl = payment.getConfirmation().confirmation_url; // call the user service to receive this url
-        return payment.isPaid();
+        return payment.isPaid(); // redundant
     }
 
     private CreditCardRequest encodeRequestByMD5(CreditCardRequest request) {
