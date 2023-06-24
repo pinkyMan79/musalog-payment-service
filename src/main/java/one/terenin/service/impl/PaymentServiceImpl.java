@@ -22,7 +22,9 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.xa.XAResource;
 import java.math.BigDecimal;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -39,7 +41,8 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public CreditCardResponse registerCreditCard(CreditCardRequest request) {
-        CreditCardEntity save = repository.save(mapper.map(request));
+        CreditCardRequest encodedRequest = encodeRequestByMD5(request);
+        CreditCardEntity save = repository.save(mapper.map(encodedRequest));
         return mapper.map(save);
     }
 
@@ -52,7 +55,9 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     public CreditCardResponse getCardByOwnerId(UUID ownerId) {
-        return null;
+        CreditCardEntity creditCardEntityByOwnerId = repository.findCreditCardEntityByOwnerId(ownerId)
+                .orElseThrow(() -> new CreditCardException(ErrorCode.CREDIT_CARD_NOT_FOUND));
+        return mapper.map(creditCardEntityByOwnerId);
     }
 
     @SneakyThrows
