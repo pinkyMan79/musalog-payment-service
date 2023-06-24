@@ -57,13 +57,13 @@ public class PaymentServiceImpl implements PaymentService {
 
     @SneakyThrows
     @Override
-    public boolean payForSubscription() {
+    public String payForSubscription() {
         Yookassa yookassa = yookassaInitializer.initializeSdk();
         Payment payment = yookassa.createPayment(new Amount(BigDecimal.valueOf(propertySource.getPrice()),
                         Currency.RUB.getInfo()),
                 "Pay the subscription and become a god", "http://localhost:8082/");
         String confirmationUrl = payment.getConfirmation().confirmation_url; // call the user service to receive this url
-        return payment.isPaid(); // redundant
+        return confirmationUrl;
     }
 
     private CreditCardRequest encodeRequestByMD5(CreditCardRequest request) {

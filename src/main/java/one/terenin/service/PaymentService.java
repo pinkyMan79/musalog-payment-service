@@ -10,6 +10,6 @@ public interface PaymentService {
     CreditCardResponse registerCreditCard(CreditCardRequest request);
     CreditCardResponse getCardByCardId(UUID creditCardId);
     CreditCardResponse getCardByOwnerId(UUID ownerId);
-    boolean payForSubscription();
+    String payForSubscription();
 
 }

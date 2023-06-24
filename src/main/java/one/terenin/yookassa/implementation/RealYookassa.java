@@ -81,7 +81,10 @@ public class RealYookassa implements Yookassa {
         return parseResponse(WebhookList.class, "https://api.yookassa.ru/v3/webhooks", "GET", null);
     }
 
-    private <T> T parseResponse(Class<T> wannableClass, @NonNull String requestAddress, @NonNull String requestMethod, String writableJson) throws IOException, UnspecifiedShopInformation, BadRequestException {
+    private <T> T parseResponse(Class<T> exceptedClass,
+                                @NonNull String requestAddress,
+                                @NonNull String requestMethod,
+                                String writableJson) throws IOException, UnspecifiedShopInformation, BadRequestException {
         if (shopIdentifier == 0 || shopToken == null) {
             throw new UnspecifiedShopInformation(ErrorCode.SERVICE_CALL_REJECTED);
 
@@ -124,8 +127,8 @@ public class RealYookassa implements Yookassa {
             throw new BadRequestException(ErrorCode.SERVICE_CALL_REJECTED);
         }
 
-        if (wannableClass == null) return null;
+        if (exceptedClass == null) return null;
 
-        return JsonUtil.fromJson(response, wannableClass);
+        return JsonUtil.fromJson(response, exceptedClass);
     }
 }

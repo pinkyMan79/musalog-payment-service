@@ -32,10 +32,10 @@ public interface PaymentApi {
     @PreAuthorize("hasRole('USER') or hasRole('SUBSCRIBER')")
     ResponseEntity<CreditCardResponse> getCardByOwnerId(@PathVariable("ownerId") UUID ownerId);
 
-    // take info from token in security context
-    @PostMapping("/pay/for/subscription")
-    @PreAuthorize("hasRole('USER')")
-    ResponseEntity<Boolean> payForSubscription();
+    // take info from token in security context, authorize by user service
+    // create from yookassa
+    @GetMapping("/pay/for/subscription")
+    ResponseEntity<String> payForSubscription();
 
     // pay for order api // need order + servcie
 
