@@ -19,7 +19,7 @@ import java.util.UUID;
 @CrossOrigin(maxAge = 3600)
 public interface PaymentApi {
 
-    // authorize by user service sending request from this
+    // authorize by user service sending request from this, no open endpoint
     @PostMapping("/card/register")
     @PermitAll
     ResponseEntity<CreditCardResponse> registerCard(@RequestBody CreditCardRequest request);
@@ -32,9 +32,11 @@ public interface PaymentApi {
     @PreAuthorize("hasRole('USER') or hasRole('SUBSCRIBER')")
     ResponseEntity<CreditCardResponse> getCardByOwnerId(@PathVariable("ownerId") UUID ownerId);
 
-    // take info from token in security context
-    @PostMapping("/pay/for/subscription")
-    @PreAuthorize("hasRole('USER')")
-    ResponseEntity<Boolean> payForSubscription();
+    // take info from token in security context, authorize by user service
+    // create from yookassa
+    @GetMapping("/pay/for/subscription")
+    ResponseEntity<String> payForSubscription();
+
+    // pay for order api // need order + servcie
 
 }

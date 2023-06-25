@@ -36,3 +36,8 @@ jwt:
   expiration-refresh: 2400
   issuer: terenin
 
+yoo:
+  secret: test_qGBrshosm2pneVOrW_IFSt2NI4whC_JvQMwaP_-3HWU
+  id: 223654
+  price: 200
+

@@ -8,7 +8,8 @@ public enum ErrorCode {
     SERVICE_NOT_FOUND("Service not found. Unknown instance"),
     SERVICE_CALL_REJECTED("Service call rejected"),
     TOKEN_GENERATION_REJECTED("Something went wrong on token generation process, check generation class"),
-    TOKEN_EXTRACTION_FAILED("Token extraction failed. Call rejected");
+    TOKEN_EXTRACTION_FAILED("Token extraction failed. Call rejected"),
+    CREDIT_CARD_NOT_FOUND("Credit card not found in database");
 
     private final String meaning;
 
